@@ -4,52 +4,46 @@
         <title>mWadsWeatherMap</title>
         <!--links-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="css/style.css">
+        
     </head>
         
     <body>
-
-<!--header-->
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Fluid jumbotron</h1>
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-    </div>
-  </div>
-
-
-
-<!--Application-->
-
-  <div class="container">
-      <!--Randomizer Button and Display of Coordinates// Clear Button-->
-    <div class="row">
-      
-          <!--Random Geo Coordinates api-->
-
-        <button type="button" class="btn btn-primary">Give me Random Coordinates!</button>
-        <a href="https://placeholder.com"><img src="https://via.placeholder.com/150"></a>
-        <p>box that holds random coordinates</p>
-        <button type="button" class="btn btn-secondary">Clear!</button>
+      <!--Random coordinate button-->
+      <button type="button" class="btn btn-primary">
+        Coordies!
+      </button>
+      <!--Display Coordinates-->
+      <div id="display geographical coordinates">
       </div>
-    </div>
-
-
-
-<!--Map display of coordinates// Weather display of coordinates-->
-    <div class="row">
-      <div class="col">
-        <a href="https://placeholder.com"><img src="https://via.placeholder.com/150"></a>
-        <p>image of map of coordinates(if possible!)</p>>
-      </div>
-      <div class="col">
-        <p>box that holds weather information for coordinates</p>>
-      </div>
-    </div>
-  </div>
-
-
-
-
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+        function grabCoordinates(coordinates) {
+          //Querying the Random.org api for the geographical coordinates
+          var queryURL = "https://www.random.org/geographic-coordinates/";
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(response) {
+
+            //Printing the coordinates
+            console.log(response);
+            //Constructing HTML containing the coordinates
+            var coordinates = $("<h1").text(response);
+            //Empty the contents of the coordinates
+            $("#display geographical coordinates").empty();
+          });
+          }
+
+// Event handler for user clicking the coordies! button
+$("button").on("click", function(event) {
+  event.preventDefault();
+//Storing coordinates
+var inputButton = $("button");
+// Running the Random.org function)
+grabCoordinates(inputButton);
+});
+
+</script>
 </html>
